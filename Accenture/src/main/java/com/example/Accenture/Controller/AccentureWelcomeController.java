@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Accenture.Business.WelcomeValidation;
@@ -22,5 +23,12 @@ public class AccentureWelcomeController {
 			return "Invalid user";
 		}
 		return "Hi "+name+" Welcome to Accenture";
+	}
+	
+	@GetMapping("/welcome/getMyWheather")
+	public String getCurrentWheather(@RequestParam(name = "access_key") String accesskey
+			, @RequestParam(name = "query") String query) {
+		System.out.println(" My Wheather -->"+accesskey+" "+query);
+		return validation.getCurrentWheather(accesskey, query);
 	}
 }
